@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Collaborative Canvas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>🎨 Collaborative Canvas <span id="room-display">(loading)</span></h1>
+        <div id="controls">
+          <label>Tool:
+            <select id="tool">
+              <option value="brush">🖌️ Brush</option>
+              <option value="eraser">🩹 Eraser</option>
+            </select>
+          </label>
+          <label>Color: <input id="color" type="color" value="#2b2bff" /></label>
+          <label>Width: <input id="width" type="range" min="1" max="40" value="4" /></label>
+          <button id="undo">↩️ Undo</button>
+          <button id="redo">↪️ Redo</button>
+        </div>
+      </header>
+
+      <main>
+        <aside id="sidebar">
+          <div id="room-info">
+            <h3>🎯 Your Room</h3>
+            <div id="current-room">
+              <input id="my-room-id" readonly />
+              <button id="copy-link">🔗 Copy Invite Link</button>
+            </div>
+          </div>
+
+          <div id="join-section">
+            <h3>🔗 Join Another Room</h3>
+            <input id="join-room-id" placeholder="Enter Room ID" />
+            <button id="join">Join Room</button>
+          </div>
+
+          <div id="users">
+            <h3>👥 Online Users</h3>
+            <ul id="user-list"></ul>
+          </div>
+
+          <div id="metrics">
+            <div>⚡ Latency: <span id="latency">—</span> ms</div>
+            <div>🧾 Actions: <span id="actions-count">0</span></div>
+          </div>
+        </aside>
+
+        <section id="canvas-wrap">
+          <canvas id="draw"></canvas>
+          <div id="cursors"></div>
+        </section>
+      </main>
+
+      <footer>
+        <small>💡 Share your room link or open another tab to test collaboration in real time.</small>
+      </footer>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="websocket.js"></script>
+    <script src="canvas.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
